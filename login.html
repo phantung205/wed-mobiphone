@@ -104,15 +104,27 @@
         .getElementById("loginForm")
         .addEventListener("submit", function (event) {
           event.preventDefault();
+          const username = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value.trim();
 
-          const username = document.getElementById("username").value;
-          const password = document.getElementById("password").value;
-
-          // Ở đây bạn có thể thêm mã để xử lý việc đăng nhập
-          // Ví dụ: gửi dữ liệu đến máy chủ bằng fetch API
-
-          console.log("Đăng nhập với:", { username, password });
-          alert("Đã gửi thông tin đăng nhập!");
+          if (username === "admin" && password === "123") {
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+            if (!users.find((u) => u.username === "admin")) {
+              users.push({ username: "admin", password: "123", role: "admin" });
+              localStorage.setItem("users", JSON.stringify(users));
+            }
+            window.location.href = "admin.html";
+          } else if (username === "abc" && password === "123") {
+            // Thêm vào localStorage nếu chưa có
+            let users = JSON.parse(localStorage.getItem("users") || "[]");
+            if (!users.find((u) => u.username === "abc")) {
+              users.push({ username: "abc", password: "123", role: "user" });
+              localStorage.setItem("users", JSON.stringify(users));
+            }
+            window.location.href = "index.html";
+          } else {
+            alert("Sai tài khoản hoặc mật khẩu!");
+          }
         });
     </script>
   </body>

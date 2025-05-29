@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký tài khoản</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+      .register-container {
+        background: #fff;
+        max-width: 370px;
+        margin: 60px auto;
+        padding: 32px 28px;
+        border-radius: 8px;
+        box-shadow: 0 2px 16px #0001;
+      }
+      .register-container h2 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #3498db;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: #555;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #dbe3ea;
+        border-radius: 6px;
+        font-size: 1rem;
+        background: #f8fafc;
+        transition: border 0.2s;
+      }
+      .form-group input:focus {
+        border: 1.5px solid #3498db;
+        background: #fff;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px 0;
+        background: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background 0.2s;
+      }
+      .btn:hover {
+        background: #217dbb;
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 18px;
+      }
+      .login-link a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Đăng ký tài khoản</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="reg-username">Tên đăng nhập</label>
+          <input type="text" id="reg-username" required />
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Mật khẩu</label>
+          <input type="password" id="reg-password" required />
+        </div>
+        <div class="form-group">
+          <label for="reg-password2">Nhập lại mật khẩu</label>
+          <input type="password" id="reg-password2" required />
+        </div>
+        <button type="submit" class="btn">Đăng ký</button>
+      </form>
+      <div class="login-link">
+        Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+      </div>
+    </div>
+    <script>
+      let users = JSON.parse(localStorage.getItem("users") || "[]");
+      if (!users.find((u) => u.username === "abc")) {
+        users.push({ username: "abc", password: "123", role: "user" });
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+      document.getElementById("registerForm").onsubmit = function (e) {
+        e.preventDefault();
+        const username = document.getElementById("reg-username").value.trim();
+        const password = document.getElementById("reg-password").value;
+        const password2 = document.getElementById("reg-password2").value;
+        if (password !== password2) {
+          alert("Mật khẩu nhập lại không khớp!");
+          return;
+        }
+        let users = JSON.parse(localStorage.getItem("users") || "[]");
+        if (users.find((u) => u.username === username)) {
+          alert("Tên đăng nhập đã tồn tại!");
+          return;
+        }
+        users.push({ username, password, role: "user" }); // luôn là user
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Đăng ký thành công! Vui lòng đăng nhập.");
+        window.location.href = "login.html";
+      };
+    </script>
+  </body>
+</html>

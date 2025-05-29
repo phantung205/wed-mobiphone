@@ -1097,6 +1097,34 @@ footer {
   transform: translateY(-5px);
 }
 
+/* Back Link and Manage Link */
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 8px 22px;
+  background: #3498db;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 10px;
+  transition: background 0.2s;
+}
+
+.back-link:hover {
+  background: #217dbb;
+}
+
+.manage-link {
+  background: #f1c40f;
+  color: #fff;
+}
+
+.manage-link:hover {
+  background: #d4ac0d;
+  color: #fff;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 992px) {
   .featured-product,

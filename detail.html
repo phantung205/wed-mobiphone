@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm - TechPhone</title>
+    <link rel="stylesheet" href="assets/css/style-detail.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">Tech<span>Phone</span></div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Nút về trang chủ -->
+    <div style="max-width: 1200px; margin: 16px auto 0; padding: 0 2rem">
+      <a
+        href="index.html"
+        style="
+          display: inline-block;
+          padding: 8px 20px;
+          background: #3498db;
+          color: #fff;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 500;
+        "
+        >&larr; Về trang chủ</a
+      >
+    </div>
+
+    <section class="product-detail">
+      <div class="container">
+        <div class="product-detail-container">
+          <div class="product-detail-image">
+            <img
+              id="productImage"
+              src="/api/placeholder/400/400"
+              alt="Tên sản phẩm"
+            />
+          </div>
+          <div class="product-detail-info">
+            <h1 id="productName">Tên sản phẩm</h1>
+            <p id="productCategory">Danh mục: iPhone</p>
+            <div class="product-rating">
+              <span id="productRating">★★★★☆ (120 đánh giá)</span>
+            </div>
+            <div class="product-price">
+              <span id="productPrice">28.990.000đ</span>
+              <span id="productOldPrice" class="old-price">33.990.000đ</span>
+            </div>
+            <p id="productDescription">
+              Đây là mô tả chi tiết về sản phẩm, bao gồm tính năng nổi bật, cấu
+              hình, camera, pin, và nhiều thông tin hấp dẫn khác.
+            </p>
+            <button class="btn">Thêm vào giỏ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 TechPhone. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Lấy thông tin từ URL
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name");
+      const price = params.get("price");
+      const oldPrice = params.get("old_price");
+      const image = params.get("image");
+      const rating = params.get("rating");
+      const reviews = params.get("reviews");
+      const category = params.get("category");
+
+      // Đổ dữ liệu vào trang
+      document.getElementById("productName").textContent = name;
+      document.getElementById("productPrice").textContent =
+        parseInt(price).toLocaleString("vi-VN") + "đ";
+      if (oldPrice) {
+        document.getElementById("productOldPrice").textContent =
+          parseInt(oldPrice).toLocaleString("vi-VN") + "đ";
+      } else {
+        document.getElementById("productOldPrice").style.display = "none";
+      }
+      document.getElementById("productImage").src =
+        image || "/api/placeholder/400/400";
+      document.getElementById("productCategory").textContent =
+        "Danh mục: " + category;
+      document.getElementById("productRating").textContent =
+        "★★★★☆ (" + (reviews || 0) + " đánh giá)";
+    </script>
+  </body>
+</html>

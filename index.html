@@ -443,6 +443,78 @@
               </div>
             </div>
           </div>
+
+          <!-- Product 9 -->
+          <div class="product" data-category="vivo">
+            <div class="product-img">
+              <img src="/api/placeholder/300/300" alt="Vivo X100 Pro" />
+              <div class="discount">-7%</div>
+            </div>
+            <div class="product-info">
+              <div class="product-tag">Vivo</div>
+              <h3 class="product-title">Vivo X100 Pro</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <span>(42)</span>
+              </div>
+              <div class="product-price">
+                <span class="price">17.990.000đ</span>
+                <span class="old-price">19.390.000đ</span>
+              </div>
+              <div class="product-actions">
+                <button
+                  class="add-to-cart-btn"
+                  data-id="9"
+                  data-name="Vivo X100 Pro"
+                  data-price="17990000"
+                  data-image="/api/placeholder/300/300"
+                >
+                  Thêm vào giỏ
+                </button>
+                <button class="view-details-btn">Chi tiết</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 10 -->
+          <div class="product" data-category="xiaomi">
+            <div class="product-img">
+              <img src="/api/placeholder/300/300" alt="Xiaomi 13T Pro" />
+            </div>
+            <div class="product-info">
+              <div class="product-tag">Xiaomi</div>
+              <h3 class="product-title">Xiaomi 13T Pro</h3>
+              <div class="product-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>(38)</span>
+              </div>
+              <div class="product-price">
+                <span class="price">15.490.000đ</span>
+              </div>
+              <div class="product-actions">
+                <button
+                  class="add-to-cart-btn"
+                  data-id="10"
+                  data-name="Xiaomi 13T Pro"
+                  data-price="15490000"
+                  data-image="/api/placeholder/300/300"
+                >
+                  Thêm vào giỏ
+                </button>
+                <button class="view-details-btn">Chi tiết</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bạn có thể copy và chỉnh sửa các khối <div class="product"> này để thêm nhiều sản phẩm khác -->
         </div>
         <div class="load-more-container">
           <button class="load-more-btn">Xem thêm</button>
@@ -694,5 +766,12 @@
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script>
+      let users = JSON.parse(localStorage.getItem("users") || "[]");
+      if (!users.find((u) => u.username === "abc")) {
+        users.push({ username: "abc", password: "123", role: "user" });
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    </script>
   </body>
 </html>

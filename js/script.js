@@ -333,6 +333,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize cart
   updateCart();
+
+  // ========== USER ICON REDIRECT ==========
+  const userIcon = document.querySelector(".user-icon");
+  if (userIcon) {
+    userIcon.addEventListener("click", function () {
+      window.location.href = "login.html";
+    });
+  }
+
+  // ========== VIEW DETAILS BUTTON ==========
+  document.querySelectorAll(".view-details-btn").forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      const product = btn.closest(".product");
+      const name = product.querySelector(".product-title").textContent;
+      const price = product.querySelector(".price")
+        ? product.querySelector(".price").textContent.replace(/\D/g, "")
+        : "";
+      const oldPrice = product.querySelector(".old-price")
+        ? product.querySelector(".old-price").textContent.replace(/\D/g, "")
+        : "";
+      const image = product.querySelector("img").src;
+      const rating = product.querySelectorAll(
+        ".fa-star, .fa-star-half-alt"
+      ).length;
+      const reviews = product.querySelector(".product-rating span")
+        ? product
+            .querySelector(".product-rating span")
+            .textContent.replace(/\D/g, "")
+        : "";
+      const category = product.dataset.category || "";
+
+      // Tạo URL với tham số sản phẩm
+      const url = `detail.html?name=${encodeURIComponent(
+        name
+      )}&price=${price}&old_price=${oldPrice}&image=${encodeURIComponent(
+        image
+      )}&rating=${rating}&reviews=${reviews}&category=${encodeURIComponent(
+        category
+      )}`;
+      window.location.href = url;
+    });
+  });
 });
 
 // Add some styles for the notification
