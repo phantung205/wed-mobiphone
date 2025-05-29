@@ -1125,6 +1125,24 @@ footer {
   color: #fff;
 }
 
+.btn.back-link,
+.btn.manage-link {
+  margin-bottom: 24px;
+  margin-right: 10px;
+  min-width: 160px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Admin Button Group */
+.admin-btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 992px) {
   .featured-product,

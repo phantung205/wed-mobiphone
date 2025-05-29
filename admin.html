@@ -4,137 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý sản phẩm - Admin</title>
-    <link rel="stylesheet" href="assets/css/style-detail.css" />
-    <style>
-      body {
-        background: #f4f6fb;
-      }
-      .admin-container {
-        max-width: 900px;
-        margin: 40px auto;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 16px #0001;
-        padding: 32px;
-      }
-      .admin-container h2 {
-        margin-bottom: 24px;
-      }
-      .admin-form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px 24px;
-        margin-bottom: 32px;
-        align-items: end;
-      }
-      .admin-form input {
-        margin: 8px 0;
-        padding: 8px;
-        width: 100%;
-        border: 1px solid #dbe3ea;
-        border-radius: 6px;
-        font-size: 1rem;
-        background: #f8fafc;
-        transition: border 0.2s;
-      }
-      .admin-form input:focus {
-        border: 1.5px solid #3498db;
-        outline: none;
-        background: #fff;
-      }
-      .admin-form button.btn {
-        grid-column: 2 span;
-        margin: 8px 0;
-        background: #3498db;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 12px 0;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .admin-form button.btn:hover {
-        background: #217dbb;
-      }
-      .product-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 32px;
-      }
-      .product-table th,
-      .product-table td {
-        border: 1px solid #eee;
-        padding: 8px;
-        text-align: center;
-      }
-      .product-table th {
-        background: #f4f4f4;
-        color: #2c3e50;
-        font-weight: 600;
-        font-size: 1.05rem;
-      }
-      .product-table tr:not(:last-child) {
-        border-bottom: 1px solid #f0f0f0;
-      }
-      .product-table td img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 6px;
-      }
-      .action-btn {
-        padding: 4px 12px;
-        margin: 0 2px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 500;
-        transition: background 0.2s, color 0.2s;
-      }
-      .edit-btn {
-        background: #3498db;
-        color: #fff;
-      }
-      .edit-btn:hover {
-        background: #217dbb;
-      }
-      .delete-btn {
-        background: #e74c3c;
-        color: #fff;
-      }
-      .delete-btn:hover {
-        background: #c0392b;
-      }
-      @media (max-width: 700px) {
-        .admin-container {
-          padding: 16px 4px;
-        }
-        .admin-form {
-          grid-template-columns: 1fr;
-        }
-        .admin-form button.btn {
-          grid-column: 1;
-        }
-        .product-table th,
-        .product-table td {
-          font-size: 0.95rem;
-          padding: 8px 4px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/admin.css" />
   </head>
   <body>
     <div class="admin-container">
-      <a href="index.html" class="back-link">&larr; Về trang chính</a>
-      <a
-        href="manage-users.html"
-        class="back-link"
-        style="background: #f1c40f; color: #fff; margin-left: 10px"
-        >Quản lý tài khoản</a
-      >
+      <div class="admin-btn-group">
+        <a href="index.html" class="btn back-link">&larr; Về trang chính</a>
+        <a href="manage-users.html" class="btn manage-link"
+          >Quản lý tài khoản</a
+        >
+      </div>
       <h2>Quản lý sản phẩm</h2>
       <form class="admin-form" id="productForm">
         <input type="hidden" id="editIndex" />
@@ -161,76 +40,6 @@
         </tbody>
       </table>
     </div>
-    <script>
-      let products = JSON.parse(localStorage.getItem("adminProducts") || "[]");
-      const form = document.getElementById("productForm");
-      const tableBody = document.querySelector("#productTable tbody");
-      const editIndex = document.getElementById("editIndex");
-
-      function renderProducts() {
-        tableBody.innerHTML = "";
-        products.forEach((p, i) => {
-          tableBody.innerHTML += `
-          <tr>
-            <td>${p.name}</td>
-            <td>${parseInt(p.price).toLocaleString("vi-VN")}đ</td>
-            <td>${
-              p.oldPrice
-                ? parseInt(p.oldPrice).toLocaleString("vi-VN") + "đ"
-                : ""
-            }</td>
-            <td><img src="${
-              p.image
-            }" alt="" style="width:60px;height:60px;object-fit:cover;border-radius:6px"></td>
-            <td>${p.category}</td>
-            <td>
-              <button class="action-btn edit-btn" onclick="editProduct(${i})">Sửa</button>
-              <button class="action-btn delete-btn" onclick="deleteProduct(${i})">Xóa</button>
-            </td>
-          </tr>
-        `;
-        });
-      }
-
-      form.onsubmit = function (e) {
-        e.preventDefault();
-        const product = {
-          name: form.name.value,
-          price: form.price.value,
-          oldPrice: form.oldPrice.value,
-          image: form.image.value,
-          category: form.category.value,
-        };
-        if (editIndex.value !== "") {
-          products[editIndex.value] = product;
-          editIndex.value = "";
-        } else {
-          products.push(product);
-        }
-        localStorage.setItem("adminProducts", JSON.stringify(products));
-        form.reset();
-        renderProducts();
-      };
-
-      window.editProduct = function (i) {
-        const p = products[i];
-        form.name.value = p.name;
-        form.price.value = p.price;
-        form.oldPrice.value = p.oldPrice;
-        form.image.value = p.image;
-        form.category.value = p.category;
-        editIndex.value = i;
-      };
-
-      window.deleteProduct = function (i) {
-        if (confirm("Bạn chắc chắn muốn xóa sản phẩm này?")) {
-          products.splice(i, 1);
-          localStorage.setItem("adminProducts", JSON.stringify(products));
-          renderProducts();
-        }
-      };
-
-      renderProducts();
-    </script>
+    <script src="js/script.js"></script>
   </body>
 </html>
