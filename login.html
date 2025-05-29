@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .login-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: #4caf50;
+      }
+      .btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px;
+        border: none;
+        width: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background-color: #45a049;
+      }
+      .forgot-password {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .forgot-password a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+      .register {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .register a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Đăng Nhập</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="btn">Đăng nhập</button>
+        <div class="forgot-password">
+          <a href="#">Quên mật khẩu?</a>
+        </div>
+        <div class="register">
+          <p>Chưa có tài khoản? <a href="#">Đăng ký</a></p>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          // Ở đây bạn có thể thêm mã để xử lý việc đăng nhập
+          // Ví dụ: gửi dữ liệu đến máy chủ bằng fetch API
+
+          console.log("Đăng nhập với:", { username, password });
+          alert("Đã gửi thông tin đăng nhập!");
+        });
+    </script>
+  </body>
+</html>
