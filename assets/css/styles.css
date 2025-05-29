@@ -373,8 +373,7 @@ nav ul li a.active::after {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("/api/placeholder/1200/500") center/cover no-repeat;
+  background: url("/assets/img/iphone-15.jpg") center/cover no-repeat;
   color: white;
   padding: 8rem 0;
   text-align: center;
