@@ -169,6 +169,17 @@ h2 {
   background: #c0392b;
 }
 
+.logout-btn {
+  background: #e74c3c;
+  color: #fff;
+  margin-left: 0;
+  margin-top: 8px;
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
 @media (max-width: 700px) {
   .admin-container {
     padding: 16px 4px;

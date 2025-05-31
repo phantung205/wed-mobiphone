@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý sản phẩm - Admin</title>
     <link rel="stylesheet" href="assets/css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="admin-container">
       <div class="admin-btn-group">
-        <!-- <a href="index.html" class="btn back-link">&larr; Về trang chính</a> -->
-        <a href="manage-users.html" class="btn manage-link"
-          >Quản lý tài khoản</a
-        >
+        <a href="manage-users.html" class="btn manage-link">Quản lý tài khoản</a>
+        <button id="logoutBtn" class="btn logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Đăng xuất
+        </button>
       </div>
       <h2>Quản lý sản phẩm</h2>
       <form class="admin-form" id="productForm">
@@ -41,5 +45,12 @@
       </table>
     </div>
     <script src="js/script.js"></script>
+    <script>
+      document.getElementById("logoutBtn").onclick = function () {
+        // Xóa trạng thái đăng nhập nếu có
+        // Ví dụ: localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+      };
+    </script>
   </body>
 </html>
